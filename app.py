@@ -30,8 +30,8 @@ def create_listing():
         'name': request.form.get('name'),
         'price': request.form.get('price')
     }
-    listings.insert_one(listing)
-    return redirect(url_for('index'))
+    listing_id = listings.insert_one(listing).inserted_id
+    return redirect(url_for('listings_show', listing_id=listing_id))
 
 
 @app.route('/listings/<listing_id>')

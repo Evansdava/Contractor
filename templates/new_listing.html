@@ -3,16 +3,23 @@
 {% block title %}New Listing{% endblock %}
 
 {% block body %}
-    Create a new listing
-    <form action="/new" method="POST">
-        <label for="listing-name">Name</label><br>
-        <input id="listing-name" type="text" name="name">
+<form method='POST' action='/new'>
+    <fieldset>
+    <legend>New listing</legend>
+    <!-- TITLE -->
+    <p>
+        <label for='title'>Title</label><br>
+        <input type='text' name='title' />
+    </p>
+    <p>
+        <label for='price'>Price</label><br>
+        <input type='text' name='price' />
+    </p>
+    </fieldset>
 
-        <br>
-        <label for="listing-price">Price</label><br>
-        <input id="price" type="text" name="price">
-
-        <br>
-        <button type="submit">Save</button>
-    </form>
+    <!-- BUTTON -->
+    <p>
+        <button type='submit'>Save listing</button>
+    </p>
+</form>
 {% endblock %}
