@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}New Listing{% endblock %}
+
+{% block body %}
+    Create a new listing
+    <form action="/new_listing" method="POST">
+        <input type="text" name="name">
+    </form>
+{% endblock %}
