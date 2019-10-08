@@ -3,6 +3,10 @@
 {% block title %}Home Page{% endblock %}
 
 {% block body %}
+    {% for listing in listings %}
+        <h2><a href='/listing/{{ listing._id }}'>{{ listing.name }}</a></h2>
+        <small>{{ listing.price }}</small>
+    {% endfor %}
     <form action="/new">
         <input type="submit" value="New Listing">
     </form>

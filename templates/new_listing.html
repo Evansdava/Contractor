@@ -4,7 +4,15 @@
 
 {% block body %}
     Create a new listing
-    <form action="/new_listing" method="POST">
-        <input type="text" name="name">
+    <form action="/new" method="POST">
+        <label for="listing-name">Name</label><br>
+        <input id="listing-name" type="text" name="name">
+
+        <br>
+        <label for="listing-price">Price</label><br>
+        <input id="price" type="text" name="price">
+
+        <br>
+        <button type="submit">Save</button>
     </form>
 {% endblock %}
