@@ -28,7 +28,8 @@ def create_listing():
     """Allow the user to create a new listing"""
     listing = {
         'name': request.form.get('name'),
-        'price': request.form.get('price')
+        'price': request.form.get('price'),
+        'image': request.form.get('image')
     }
     listing_id = listings.insert_one(listing).inserted_id
     return redirect(url_for('listings_show', listing_id=listing_id))

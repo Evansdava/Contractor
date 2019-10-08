@@ -4,8 +4,9 @@
 
 {% block body %}
     {% for listing in listings %}
-        <h2><a href='/listings/{{ listing._id }}'>{{ listing.name }}</a></h2>
-        <small>{{ listing.price }}</small>
+        <h1><a href='/listings/{{ listing._id }}'>{{ listing.name }}</a></h1>
+        <p><img src="{{ listing.image }}" alt="No Image Found" width="50" height="50"></p>
+        <h2>${{ listing.price }}</h2>
     {% endfor %}
 
     <form action="/new">
