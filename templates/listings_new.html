@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}New Listing{% endblock %}
+
+{% block body %}
+    <form method='POST' action='/listings/new'>
+        {% include 'partials/listings_form.html' %}
+    </form>
+{% endblock %}

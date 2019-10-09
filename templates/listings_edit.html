@@ -3,29 +3,9 @@
 {% block title %}Edit Listing{% endblock %}
 
 {% block body %}
-    <form method="POST" action="/listings/{{listing._id}}">
-        <fieldset>
-        <legend>New listing</legend>
-        <!-- NAME -->
-        <p>
-            <label for="list-name">Name</label><br>
-            <input id="list-name" type="text" name="name" value="{{ listing.name }}"/>
-        </p>
-        <!-- PRICE -->
-        <p>
-            <label for="list-price">Price</label><br>
-            $<input id="list-price" type="text" name="price" value="{{ listing.price }}"/>
-        </p>
-        <!-- IMAGE -->
-        <p>
-            <label for="list-image">Image URL</label><br>
-            <input id="list-image" type="text" name="image" value="{{ listing.image }}">
-        </p>
-        </fieldset>
-
-        <!-- BUTTON -->
-        <p>
-            <button type="submit">Save listing</button>
-        </p>
+    
+{% block content %}
+    <form method='POST' action='/listings/{{listing._id}}'>
+        {% include 'partials/listings_form.html' %}
     </form>
 {% endblock %}

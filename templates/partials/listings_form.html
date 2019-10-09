@@ -1,0 +1,24 @@
+<fieldset>
+<legend>{{title}}</legend>
+<!-- NAME -->
+<p>
+    <label for="list-name">Name</label><br>
+    <input id="list-name" type="text" name="name" value="{{ listing.name }}"/>
+</p>
+<!-- PRICE -->
+<p>
+    <label for="list-price">Price</label><br>
+    $<input id="list-price" type="text" name="price" value="{{ listing.price }}"/>
+</p>
+<!-- IMAGE -->
+<p>
+    <label for="list-image">Image URL</label><br>
+    <input id="list-image" type="text" name="image" value="{{ listing.image }}">
+</p>
+</fieldset>
+
+<!-- BUTTON -->
+<p>
+    <button type="submit" formaction="/" formmethod="GET">Cancel</button>
+    <button type="submit">Save listing</button>
+</p>

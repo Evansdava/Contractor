@@ -14,17 +14,18 @@ listings = db.listings
 @app.route("/")
 def index():
     """Return homepage"""
-    return render_template("index.html", listings=listings.find())
+    return render_template("listings_index.html", listings=listings.find())
 
 
-@app.route("/new")
+@app.route("/listings/new")
 def new_listing():
     """Return new listing creation page"""
-    return render_template("new_listing.html")
+    return render_template("listings_new.html", listing={},
+                           title='New listing')
 
 
-@app.route("/new", methods=["POST"])
-def create_listing():
+@app.route("/listings/new", methods=["POST"])
+def listings_new():
     """Allow the user to create a new listing"""
     listing = {
         "name": request.form.get("name"),
