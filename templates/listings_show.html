@@ -2,14 +2,18 @@
 
 {% block body %}
     <a href='/'>Back to Home</a>
-    <h1>{{ listing.name }}</h1>
-    <img src="{{ listing.image }}" alt="Listing Image" width="350" height="350">
-    <h2>${{ listing.price }}</h2>
+    <div class='row'>
+        <div class='col-sm-6 col-sm-offset-3'>
+            <h1>{{ listing.name }}</h1>
+            <img src="{{ listing.image }}" alt="Listing Image" width="350" height="350">
+            <h2>${{ listing.price }}</h2>
 
-    <p><form action="/listings/{{ listing._id }}/edit">
-        <button type="submit">Edit</button>
-    </form></p>
-    <p><form method='POST' action='/listings/{{ listing._id }}/delete'>
-        <button type='submit'>Delete</button>
-    </form></p>
+            <p><form action="/listings/{{ listing._id }}/edit">
+                <button type="submit">Edit</button>
+            </form></p>
+            <p><form method='POST' action='/listings/{{ listing._id }}/delete'>
+                <button type='submit'>Delete</button>
+            </form></p>
+        </div>
+    </div>
 {% endblock %}

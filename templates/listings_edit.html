@@ -3,7 +3,11 @@
 {% block title %}Edit Listing{% endblock %}
 
 {% block body %}
-    <form method='POST' action='/listings/{{listing._id}}'>
-        {% include 'partials/listings_form.html' %}
-    </form>
+<div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+        <form method='POST' action='/listings/{{listing._id}}'>
+            {% include 'partials/listings_form.html' %}
+        </form>
+    </div>
+</div>
 {% endblock %}

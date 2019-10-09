@@ -3,7 +3,11 @@
 {% block title %}New Listing{% endblock %}
 
 {% block body %}
-    <form method='POST' action='/listings/new'>
-        {% include 'partials/listings_form.html' %}
-    </form>
+<div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+        <form method='POST' action='/listings/new'>
+            {% include 'partials/listings_form.html' %}
+        </form>
+    </div>
+</div>
 {% endblock %}
