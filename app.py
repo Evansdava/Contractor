@@ -12,7 +12,7 @@ listings = db.listings
 
 
 @app.route("/")
-def index():
+def listings_index():
     """Return homepage"""
     return render_template("listings_index.html", listings=listings.find())
 
@@ -63,6 +63,13 @@ def listings_edit(listing_id):
     listing = listings.find_one({"_id": ObjectId(listing_id)})
     return render_template("listings_edit.html", listing=listing,
                            title="Edit listing")
+
+
+@app.route('/listings/<listing_id>/delete', methods=['POST'])
+def listings_delete(listing_id):
+    """Delete one listing."""
+    listings.delete_one({'_id': ObjectId(listing_id)})
+    return redirect(url_for('listings_index'))
 
 
 if __name__ == "__main__":
