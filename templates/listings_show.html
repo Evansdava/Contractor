@@ -4,5 +4,7 @@
 <a href='/'>Back to Home</a>
 <h1>{{ listing.name }}</h1>
 <img src="{{ listing.image }}" alt="Listing Image" width="350" height="350">
-<h2>{{ listing.price }}</h2>
+<h2>${{ listing.price }}</h2>
+
+<p><a href='/listings/{{ listing._id }}/edit'>Edit</a></p>
 {% endblock %}
