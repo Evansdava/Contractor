@@ -21,9 +21,9 @@ def listings_index():
 @app.route("/cart")
 def cart_show():
     """Show the user's cart"""
-    total = 0
-    for item in cart.find():
-        total += int(item["price"])
+    # total = 0
+    # for item in cart.find():
+    #     total += int(item["price"])
     return render_template("cart_show.html", cart=cart.find())
 
 
