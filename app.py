@@ -17,6 +17,12 @@ def listings_index():
     return render_template("listings_index.html", listings=listings.find())
 
 
+@app.route("/login")
+def login():
+    """Let user log in"""
+    return render_template("login.html")
+
+
 @app.route("/listings/new")
 def new_listing():
     """Return new listing creation page"""

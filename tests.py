@@ -5,14 +5,14 @@ from bson.objectid import ObjectId
 
 sample_listing_id = ObjectId('5d55cffc4a3d4031f42827a3')
 sample_listing = {
-    'title': 'Clown Nose',
+    'name': 'Clown Nose',
     'price': '1000',
     'image': 'https://inst-1.cdn.shockers.de/hs_cdn/out/pictures/master/\
 product/1/clownsnase-vinyl--rote-kunststoff-clown-nase--faschingsnase\
 --karnevals-zubehoer--horrorclown-nase--13915.jpg'
 }
 sample_form_data = {
-    'title': sample_listing['title'],
+    'name': sample_listing['name'],
     'price': sample_listing['price'],
     'image': sample_listing['image']
 }
@@ -63,7 +63,7 @@ class listingsTests(TestCase):
     @mock.patch('pymongo.collection.Collection.insert_one')
     def test_submit_listing(self, mock_insert):
         """Test submitting a new listing."""
-        result = self.client.post('/listings', data=sample_form_data)
+        result = self.client.post('/listings/new', data=sample_form_data)
 
         # After submitting, should redirect to that listing's page
         self.assertEqual(result.status, '302 FOUND')
