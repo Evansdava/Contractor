@@ -46,6 +46,16 @@ def cart_destroy():
     return redirect(url_for("cart_show"))
 
 
+@app.route("/cart/checkout")
+def cart_checkout():
+    """Allow the user to checkout"""
+    total = 0
+    for item in cart.find():
+        total += int(item["price"])
+    print("$" + str(total))
+    return redirect(url_for("cart_destroy"))
+
+
 @app.route("/listings/new")
 def new_listing():
     """Return new listing creation page"""
@@ -105,12 +115,13 @@ def listings_delete(listing_id):
 def add_to_cart(listing_id):
     """Add an item to the user's cart"""
     item = listings.find_one({"_id": ObjectId(listing_id)})
-    new_item = {
-        "name": item["name"],
-        "price": item["price"],
-        "image": item["image"]
-    }
-    cart.insert_one(new_item)
+    for _ in range(int(request.form.get("quant"))):
+        new_item = {
+            "name": item["name"],
+            "price": item["price"],
+            "image": item["image"]
+        }
+        cart.insert_one(new_item)
     return redirect(url_for('cart_show'))
 
 
