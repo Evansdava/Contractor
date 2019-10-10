@@ -24,7 +24,7 @@ def cart_show():
     total = 0
     for item in cart.find():
         total += int(item["price"])
-    return render_template("cart_show.html", cart=cart.find(), total=total)
+    return render_template("cart_show.html", cart=cart.find())
 
 
 @app.route("/cart/<item_id>")
