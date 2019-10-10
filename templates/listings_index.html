@@ -3,15 +3,15 @@
 {% block title %}Home Page{% endblock %}
 
 {% block body %}
-<div class='row'>
-    {% for listing in listings %}
-        <div class='col-md-3'>
-            <h1><a href='/listings/{{ listing._id }}'>{{ listing.name }}</a></h1>
-            <p><img src="{{ listing.image }}" alt="No Image Found" width="50" height="50"></p>
-            <h2>${{ listing.price }}</h2>
-        </div>
-    {% endfor %}
-</div>
+    <div class='row'>
+        {% for listing in listings %}
+            <div class='col-md-3'>
+                <h1><a href='/listings/{{ listing._id }}'>{{ listing.name }}</a></h1>
+                <p><img src="{{ listing.image }}" alt="No Image Found" width="50" height="50"></p>
+                <h2>${{ listing.price }}</h2>
+            </div>
+        {% endfor %}
+    </div>
 
     <form action="/listings/new">
         <input type="submit" value="New Listing">

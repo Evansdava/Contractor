@@ -9,6 +9,7 @@ host = os.environ.get("MONGODB_URI", "mongodb://localhost:27017/my_app_db")
 client = MongoClient(host=f"{host}?retryWrites=false")
 db = client.get_default_database()
 listings = db.listings
+cart = db.cart
 
 
 @app.route("/")
@@ -17,10 +18,32 @@ def listings_index():
     return render_template("listings_index.html", listings=listings.find())
 
 
-@app.route("/login")
-def login():
-    """Let user log in"""
-    return render_template("login.html")
+@app.route("/cart")
+def cart_show():
+    """Show the user's cart"""
+    return render_template("cart_show.html", cart=cart.find())
+
+
+@app.route("/cart/<item_id>")
+def cart_item_show(item_id):
+    """Show a single item in a user's cart"""
+    item = cart.find_one({"_id": ObjectId(item_id)})
+    return render_template("cart_item_show.html", item=item)
+
+
+@app.route("/cart/<item_id>/delete", methods=["POST"])
+def cart_delete(item_id):
+    """Delete an item from the user's cart"""
+    cart.delete_one({"_id": ObjectId(item_id)})
+    return redirect(url_for("cart_show"))
+
+
+@app.route("/cart/destroy")
+def cart_destroy():
+    """Delete all items in a user's cart"""
+    for item in cart.find():
+        cart.delete_one({"_id": ObjectId(item["_id"])})
+    return redirect(url_for("cart_show"))
 
 
 @app.route("/listings/new")
@@ -76,6 +99,19 @@ def listings_delete(listing_id):
     """Delete one listing."""
     listings.delete_one({'_id': ObjectId(listing_id)})
     return redirect(url_for('listings_index'))
+
+
+@app.route('/listings/<listing_id>/add-to-cart', methods=['POST'])
+def add_to_cart(listing_id):
+    """Add an item to the user's cart"""
+    item = listings.find_one({"_id": ObjectId(listing_id)})
+    new_item = {
+        "name": item["name"],
+        "price": item["price"],
+        "image": item["image"]
+    }
+    cart.insert_one(new_item)
+    return redirect(url_for('cart_show'))
 
 
 if __name__ == "__main__":
