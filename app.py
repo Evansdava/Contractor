@@ -23,7 +23,7 @@ def cart_show():
     """Show the user's cart"""
     total = 0
     for item in cart.find():
-        total += 1  # float(item["price"])
+        total += float(item["price"])
     return render_template("cart_show.html", cart=cart.find(), total=total)
 
 
